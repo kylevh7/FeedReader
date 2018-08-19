@@ -76,6 +76,8 @@ $(function() {
      * should have two expectations: does the menu display when
      * clicked and does it hide when clicked again.
      */
+     /* TODO: Write a new test suite named "Initial Entries" */
+
      describe('Initial Entries', ()=>{
          beforeEach((done)=>{
              loadFeed(0, done);
@@ -85,7 +87,6 @@ $(function() {
              expect(feed.children.length > 0).toBe(true);
          });
      });
-    /* TODO: Write a new test suite named "Initial Entries" */
 
     /* TODO: Write a test that ensures when the loadFeed
      * function is called and completes its work, there is at least
@@ -93,6 +94,21 @@ $(function() {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
+     describe('New Feed Selection', ()=>{
+         beforeEach((done)=>{
+             loadFeed(0);
+             loadFeed(1, done);
+
+         })
+
+
+         it('feed is loaded', ()=>{
+             const feed = document.querySelector('.feed');
+             const feed1 = feed.children[0].innerText;
+             const feed2 = feed.children[1].innerText;
+             expect(feed1).not.toEqual(feed2);
+         });
+     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 
